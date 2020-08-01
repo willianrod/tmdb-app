@@ -124,7 +124,7 @@ const Home = () => {
 
   return (
     <ScrollView>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="#00000044" translucent />
       <FlatList
         ref={flatlistRef}
         keyExtractor={KEY_EXTRACTOR}

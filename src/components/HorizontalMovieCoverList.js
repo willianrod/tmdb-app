@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 
 import {
   FlatList, Text, StyleSheet, View, Button,
@@ -7,6 +7,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Cover from './Cover';
 import useDidMount from '../hooks/useDidMount';
+import colors from '../values/colors';
 
 const styles = StyleSheet.create({
   title: {
@@ -28,6 +29,14 @@ const styles = StyleSheet.create({
   placeholderContainer: {
     flexDirection: 'row',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  titleContainer: {
+    flex: 1,
+  },
 });
 
 const KEY_EXTRACTOR = (item) => String(item.id);
@@ -38,7 +47,7 @@ const MovieCard = ({ item, index, showIndex }) => {
   const navigation = useNavigation();
 
   const handleMoviePress = () => {
-    navigation.navigate('Movie', { movie: item });
+    navigation.push('Movie', { movie: item });
   };
 
   return (
@@ -56,7 +65,7 @@ const HorizontalMovieCoverList = ({
   requestDataSource, showIndex = false, title, description,
 }) => {
   const [dataSource, setDataSource] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const renderCover = useCallback(({ item, index }) => (
     <MovieCard item={item} index={index} showIndex={showIndex} />
@@ -71,7 +80,7 @@ const HorizontalMovieCoverList = ({
     setLoading(false);
   }, []);
 
-  const renderEmptyComponent = () => {
+  const renderEmptyComponent = useMemo(() => {
     if (loading) {
       return (
         <View style={styles.placeholderContainer}>
@@ -87,7 +96,7 @@ const HorizontalMovieCoverList = ({
     return (
       <Text>Nada por aqui</Text>
     );
-  };
+  }, [loading]);
 
   useDidMount(() => {
     requestListData();
@@ -95,12 +104,12 @@ const HorizontalMovieCoverList = ({
 
   return (
     <>
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16 }}>
-        <View style={{ flex: 1 }}>
+      <View style={styles.header}>
+        <View style={styles.titleContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{description}</Text>
         </View>
-        <Button color="rgb(255, 45, 85)" title="+ Ver mais" />
+        <Button color={colors.primary} title="+ Ver mais" />
       </View>
       <FlatList
         data={dataSource?.results}

@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './pages/Home';
 
+import colors from './values/colors';
 import { store } from './redux';
 import Start from './pages/Start';
 import Movie from './pages/Movie';
@@ -15,11 +16,11 @@ import Movie from './pages/Movie';
 const APP_THEME = {
   dark: false,
   colors: {
-    primary: 'rgb(255, 45, 85)',
-    background: '#14151A',
-    card: '#1C1D24',
-    text: '#ffffff',
-    border: 'rgb(199, 199, 204)',
+    primary: colors.primary,
+    background: colors.background,
+    card: colors.backgroundLight,
+    text: colors.textPrimary,
+    border: colors.textSecondary,
   },
 };
 
@@ -35,10 +36,6 @@ const MoviewStack = () => (
 const App = () => (
   <ReduxProvider store={store}>
     <NavigationContainer theme={APP_THEME}>
-      {/*
-      <View style={{ flex: 1, backgroundColor: '#14151A' }}>
-        <Home />
-      </View> */}
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Home" component={MoviewStack} />

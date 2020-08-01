@@ -1,11 +1,12 @@
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, {
+  useMemo, useEffect, useRef, memo,
+} from 'react';
 
 import {
   View, Image, Text, StyleSheet,
   Animated,
 } from 'react-native';
 import Easing from 'react-native/Libraries/Animated/src/Easing';
-import { useNavigation } from '@react-navigation/native';
 import { getImageUrl } from '../helpers/url-helper';
 import Touchable from './Touchable';
 
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Cover = ({
+const Cover = memo(({
   index, showIndex, size = 'w500',
   onPress, posterPath,
 }) => {
@@ -49,7 +50,7 @@ const Cover = ({
     uri: getImageUrl({ path: posterPath, size }),
   }), []);
 
-  return (
+  return useMemo(() => (
     <Touchable
       onPress={onPress}
     >
@@ -66,8 +67,8 @@ const Cover = ({
         ) : null}
       </View>
     </Touchable>
-  );
-};
+  ), []);
+});
 
 Cover.Placeholder = () => {
   const fadeAnim = useRef(new Animated.Value(1)).current;

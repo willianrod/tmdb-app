@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import {
   View, Image, Text, StyleSheet, useWindowDimensions, StatusBar,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import { useNavigation } from '@react-navigation/native';
 import Category from './Category';
 import { getImageUrl } from '../helpers/url-helper';
 import PlaceHolder from './PlaceHolder';
+import Touchable from './Touchable';
 
 const styles = StyleSheet.create({
   backdropContainer: {
@@ -49,10 +51,16 @@ const LINEAR_GRADIENT_COLORS = ['#14151A00', '#14151A'];
 const SliderItem = ({ item }) => {
   const { width } = useWindowDimensions();
 
+  const navigation = useNavigation();
+
   const {
     backdrop_path: backdropPath, title,
     genre_ids: genreIds,
   } = item;
+
+  const handlePress = useCallback(() => {
+    navigation.navigate('Movie', { movie: item });
+  }, []);
 
   const blurredImageStyle = useMemo(() => ({
     position: 'absolute',
@@ -110,30 +118,32 @@ const SliderItem = ({ item }) => {
   };
 
   return (
-    <View style={containerStyle}>
-      <Image
-        style={blurredImageStyle}
-        source={blurredImageSource}
-        blurRadius={3}
-      />
-      <View style={styles.backdropContainer}>
-        <Image source={backdropSource} style={backdropStyles} />
-      </View>
-      <LinearGradient
-        colors={LINEAR_GRADIENT_COLORS}
-        style={linearGradientStyles}
-      >
-        <Text
-          style={styles.movieTitle}
-          numberOfLines={1}
-        >
-          {title}
-        </Text>
-        <View style={styles.categoryContainer}>
-          {renderCategories()}
+    <Touchable onPress={handlePress}>
+      <View style={containerStyle}>
+        <Image
+          style={blurredImageStyle}
+          source={blurredImageSource}
+          blurRadius={3}
+        />
+        <View style={styles.backdropContainer}>
+          <Image source={backdropSource} style={backdropStyles} />
         </View>
-      </LinearGradient>
-    </View>
+        <LinearGradient
+          colors={LINEAR_GRADIENT_COLORS}
+          style={linearGradientStyles}
+        >
+          <Text
+            style={styles.movieTitle}
+            numberOfLines={1}
+          >
+            {title}
+          </Text>
+          <View style={styles.categoryContainer}>
+            {renderCategories()}
+          </View>
+        </LinearGradient>
+      </View>
+    </Touchable>
   );
 };
 
