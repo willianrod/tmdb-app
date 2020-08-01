@@ -1,5 +1,5 @@
 import React, {
-  useMemo, useEffect, useRef,
+  useMemo, useEffect, useRef, memo,
 } from 'react';
 
 import { Animated, Easing } from 'react-native';
@@ -51,4 +51,4 @@ const PlaceHolder = ({ style }) => {
   );
 };
 
-export default PlaceHolder;
+export default memo(PlaceHolder);

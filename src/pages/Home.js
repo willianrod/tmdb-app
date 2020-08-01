@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useState, useRef,
+  useCallback, useState, useRef, memo,
 } from 'react';
 import {
   View, FlatList, StyleSheet,
@@ -156,4 +156,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

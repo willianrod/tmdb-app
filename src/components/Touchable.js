@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Platform, TouchableOpacity } from 'react-native';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
@@ -26,4 +26,4 @@ const Touchable = ({ onPress, children }) => {
   );
 };
 
-export default Touchable;
+export default memo(Touchable);

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, memo } from 'react';
 import {
   View, Image, Text, StyleSheet, useWindowDimensions, StatusBar,
 } from 'react-native';
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 const BACKDROP_ASPECT_RATIO = 16 / 9;
 const LINEAR_GRADIENT_COLORS = ['#14151A00', '#14151A'];
 
-const SliderItem = ({ item }) => {
+const SliderItem = memo(({ item }) => {
   const { width } = useWindowDimensions();
 
   const navigation = useNavigation();
@@ -145,9 +145,9 @@ const SliderItem = ({ item }) => {
       </View>
     </Touchable>
   );
-};
+});
 
-SliderItem.Placeholder = () => {
+SliderItem.Placeholder = memo(() => {
   const { width } = useWindowDimensions();
 
   const containerStyle = useMemo(
@@ -177,6 +177,6 @@ SliderItem.Placeholder = () => {
       <PlaceHolder style={styles.categoriesPlaceHolder} />
     </View>
   );
-};
+});
 
 export default SliderItem;

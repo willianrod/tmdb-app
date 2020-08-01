@@ -1,4 +1,6 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, {
+  useCallback, useState, useMemo, memo,
+} from 'react';
 
 import {
   FlatList, Text, StyleSheet, View, Button,
@@ -43,12 +45,12 @@ const KEY_EXTRACTOR = (item) => String(item.id);
 
 const HorizontalSpacing = () => <View style={styles.horizontalSpacing} />;
 
-const MovieCard = ({ item, index, showIndex }) => {
+const MovieCard = memo(({ item, index, showIndex }) => {
   const navigation = useNavigation();
 
-  const handleMoviePress = () => {
+  const handleMoviePress = useCallback(() => {
     navigation.push('Movie', { movie: item });
-  };
+  }, [navigation, item]);
 
   return (
     <Cover
@@ -59,7 +61,7 @@ const MovieCard = ({ item, index, showIndex }) => {
       onPress={handleMoviePress}
     />
   );
-};
+});
 
 const HorizontalMovieCoverList = ({
   requestDataSource, showIndex = false, title, description,
@@ -126,4 +128,4 @@ const HorizontalMovieCoverList = ({
   );
 };
 
-export default HorizontalMovieCoverList;
+export default memo(HorizontalMovieCoverList);

@@ -22,7 +22,7 @@ const Start = ({ getCategories, navigation }) => {
 
   useDidMount(() => {
     requestCategories();
-  }, []);
+  });
 
   return <Text>Loading...</Text>;
 };

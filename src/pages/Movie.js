@@ -3,14 +3,14 @@ import React, {
 } from 'react';
 import {
   Image, View, useWindowDimensions, StatusBar, Text,
-  StyleSheet,
+  StyleSheet, ScrollView, FlatList,
 } from 'react-native';
 
 import axios from 'axios';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { useIsFocused } from '@react-navigation/native';
 
 import useDidMount from '../hooks/useDidMount';
 import Cover from '../components/Cover';
@@ -107,6 +107,7 @@ const Movie = ({ route }) => {
   const [moviewCredits, setMovieCredits] = useState(null);
 
   const { width } = useWindowDimensions();
+  const isFocused = useIsFocused();
 
   const requestDetails = useCallback(async () => {
     try {
@@ -247,18 +248,24 @@ const Movie = ({ route }) => {
           Creditos
         </Text>
       </View>
-      <FlatList
-        data={moviewCredits?.cast}
-        renderItem={renderItem}
-        keyExtractor={KEY_EXTRACTOR}
-        horizontal
-      />
+      {isFocused
+        ? (
+          <>
+            <FlatList
+              data={moviewCredits?.cast}
+              renderItem={renderItem}
+              removeClippedSubviews
+              keyExtractor={KEY_EXTRACTOR}
+              horizontal
+            />
 
-      <HorizontalMovieCoverList
-        title="Relacionados"
-        description="Filmes parecidos com este"
-        requestDataSource={requestRelated}
-      />
+            <HorizontalMovieCoverList
+              title="Relacionados"
+              description="Filmes parecidos com este"
+              requestDataSource={requestRelated}
+            />
+          </>
+        ) : null}
     </ScrollView>
   );
 };

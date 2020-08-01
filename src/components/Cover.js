@@ -70,7 +70,7 @@ const Cover = memo(({
   ), []);
 });
 
-Cover.Placeholder = () => {
+Cover.Placeholder = memo(() => {
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const placeHolderStyles = useMemo(() => ({
@@ -118,6 +118,6 @@ Cover.Placeholder = () => {
   return (
     <Animated.View style={placeHolderStyles} useNativeDriver={false} />
   );
-};
+});
 
 export default Cover;
