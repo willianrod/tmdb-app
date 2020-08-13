@@ -6,6 +6,10 @@
     "plugin:react/recommended",
     "airbnb"
   ],
+  "globals": {
+    "__DEV__": false,
+    "window": false
+  },
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

@@ -1,7 +1,7 @@
 {
-  "eslint.enable": true,
   "editor.tabSize": 2,
   "editor.useTabStops": true,
+  "eslint.enable": true,
   "editor.detectIndentation": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {

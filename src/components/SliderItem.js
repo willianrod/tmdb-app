@@ -48,18 +48,18 @@ const styles = StyleSheet.create({
 const BACKDROP_ASPECT_RATIO = 16 / 9;
 const LINEAR_GRADIENT_COLORS = ['#14151A00', '#14151A'];
 
-const SliderItem = memo(({ item }) => {
+const SliderItem = memo(({ item, mediaType }) => {
   const { width } = useWindowDimensions();
 
   const navigation = useNavigation();
 
   const {
-    backdrop_path: backdropPath, title,
+    backdrop_path: backdropPath, title, name,
     genre_ids: genreIds,
   } = item;
 
   const handlePress = useCallback(() => {
-    navigation.navigate('Movie', { movie: item });
+    navigation.navigate(mediaType === 'movie' ? 'Movie' : 'TVShow', { item });
   }, []);
 
   const blurredImageStyle = useMemo(() => ({
@@ -136,7 +136,7 @@ const SliderItem = memo(({ item }) => {
             style={styles.movieTitle}
             numberOfLines={1}
           >
-            {title}
+            {title || name}
           </Text>
           <View style={styles.categoryContainer}>
             {renderCategories()}
@@ -170,9 +170,7 @@ SliderItem.Placeholder = memo(() => {
 
   return (
     <View style={containerStyle}>
-      {/* <View style={styles.backdropContainer}> */}
       <PlaceHolder style={placeHolderStyles} />
-      {/* </View> */}
       <PlaceHolder style={styles.titlePlaceHolder} />
       <PlaceHolder style={styles.categoriesPlaceHolder} />
     </View>

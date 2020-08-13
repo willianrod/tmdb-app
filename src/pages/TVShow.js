@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 16,
   },
-  movieTitle: {
+  tvShowTitle: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
@@ -100,23 +100,23 @@ const LINEAR_GRADIENT_COLORS = ['#14151A00', '#14151A'];
 
 const KEY_EXTRACTOR = (item) => String(item.id);
 
-const Movie = ({ route }) => {
-  const { item: movie } = route.params;
+const TVShow = ({ route }) => {
+  const { item: tvShow } = route.params;
 
-  const [movieDetails, setMovieDetails] = useState(movie);
-  const [moviewCredits, setMovieCredits] = useState(null);
+  const [tvShowDetails, setTvShowDetails] = useState(tvShow);
+  const [tvShowCredits, setTvShowCredits] = useState(null);
 
   const { width } = useWindowDimensions();
   const isFocused = useIsFocused();
 
   const requestDetails = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/medias/movie/${movie.id}`, {
+      const { data } = await axios.get(`/medias/tv/${tvShow.id}`, {
         params: {
           language: 'pt-BR',
         },
       });
-      setMovieDetails(data);
+      setTvShowDetails(data);
     } catch (ex) {
       console.warn(ex);
     }
@@ -124,12 +124,12 @@ const Movie = ({ route }) => {
 
   const requestCredits = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/medias/movie/${movie.id}/credits`, {
+      const { data } = await axios.get(`/medias/tv/${tvShow.id}/credits`, {
         params: {
           language: 'pt-BR',
         },
       });
-      setMovieCredits(data);
+      setTvShowCredits(data);
     } catch (ex) {
       console.warn(ex);
     }
@@ -137,7 +137,7 @@ const Movie = ({ route }) => {
 
   const requestRelated = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/medias/movie/${movie.id}/recommendations`, {
+      const { data } = await axios.get(`/medias/tv/${tvShow.id}/recommendations`, {
         params: {
           language: 'pt-BR',
         },
@@ -167,9 +167,9 @@ const Movie = ({ route }) => {
 
   const backdropSource = useMemo(
     () => ({
-      uri: getImageUrl({ size: 'w780', path: movieDetails.backdrop_path }),
+      uri: getImageUrl({ size: 'w780', path: tvShowDetails.backdrop_path }),
     }),
-    [movieDetails.backdrop_path],
+    [tvShowDetails.backdrop_path],
   );
 
   const backdropStyles = useMemo(
@@ -205,20 +205,20 @@ const Movie = ({ route }) => {
       </View>
       <View style={styles.header}>
         <Cover
-          posterPath={movieDetails.poster_path}
+          posterPath={tvShowDetails.poster_path}
           side="w500"
         />
         <View />
         <View style={styles.textContainer}>
-          <Text style={styles.movieTitle} numberOfLines={3}>
-            {movieDetails.title}
+          <Text style={styles.tvShowTitle} numberOfLines={3}>
+            {tvShowDetails.name}
           </Text>
           <Text style={styles.dateAndTime} numberOfLines={3}>
-            {moment(movieDetails.release_date).format('DD/MM/YYYY')}
+            {moment(tvShowDetails.release_date).format('DD/MM/YYYY')}
             {' '}
             -
             {' '}
-            {movieDetails.runtime || '-'}
+            {tvShowDetails.runtime || '-'}
             min
           </Text>
           <View style={styles.ragingContainer}>
@@ -226,10 +226,10 @@ const Movie = ({ route }) => {
               <Icon name="star" size={32} color={colors.primary} />
             </Text>
             <Text style={styles.rating}>
-              {movieDetails.vote_average}
+              {tvShowDetails.vote_average}
             </Text>
             <Text style={styles.voters}>
-              {movieDetails.vote_count}
+              {tvShowDetails.vote_count}
               {' '}
               votos
             </Text>
@@ -241,7 +241,7 @@ const Movie = ({ route }) => {
           Sinopse
         </Text>
         <Text style={styles.bodyText}>
-          {movieDetails.overview}
+          {tvShowDetails.overview}
         </Text>
 
         <Text style={styles.bodyTitle}>
@@ -252,7 +252,7 @@ const Movie = ({ route }) => {
         ? (
           <>
             <FlatList
-              data={moviewCredits?.cast}
+              data={tvShowCredits?.cast}
               renderItem={renderItem}
               removeClippedSubviews
               keyExtractor={KEY_EXTRACTOR}
@@ -261,9 +261,9 @@ const Movie = ({ route }) => {
 
             <HorizontalMovieCoverList
               title="Relacionados"
-              description="Filmes parecidos com este"
+              description="Séries parecidas com esta"
               requestDataSource={requestRelated}
-              mediaType="movie"
+              mediaType="tv"
             />
           </>
         ) : null}
@@ -271,4 +271,4 @@ const Movie = ({ route }) => {
   );
 };
 
-export default memo(Movie);
+export default memo(TVShow);

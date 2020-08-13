@@ -45,11 +45,13 @@ const KEY_EXTRACTOR = (item) => String(item.id);
 
 const HorizontalSpacing = () => <View style={styles.horizontalSpacing} />;
 
-const MovieCard = memo(({ item, index, showIndex }) => {
+const MovieCard = memo(({
+  item, index, showIndex, mediaType,
+}) => {
   const navigation = useNavigation();
 
   const handleMoviePress = useCallback(() => {
-    navigation.push('Movie', { movie: item });
+    navigation.push(mediaType === 'movie' ? 'Movie' : 'TVShow', { item });
   }, [navigation, item]);
 
   return (
@@ -64,13 +66,14 @@ const MovieCard = memo(({ item, index, showIndex }) => {
 });
 
 const HorizontalMovieCoverList = ({
-  requestDataSource, showIndex = false, title, description,
+  requestDataSource, showIndex, title, description,
+  mediaType,
 }) => {
   const [dataSource, setDataSource] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const renderCover = useCallback(({ item, index }) => (
-    <MovieCard item={item} index={index} showIndex={showIndex} />
+    <MovieCard item={item} index={index} showIndex={showIndex} mediaType={mediaType} />
   ), []);
 
   const requestListData = useCallback(async () => {
@@ -126,6 +129,10 @@ const HorizontalMovieCoverList = ({
       />
     </>
   );
+};
+
+HorizontalMovieCoverList.defaultProps = {
+  showIndex: false,
 };
 
 export default memo(HorizontalMovieCoverList);

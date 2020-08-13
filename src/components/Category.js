@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 const Category = ({ id, categories }) => {
   const categoryName = useMemo(() => {
     if (!categories) return null;
-    return categories.find((category) => category.id === id).name;
+    return categories.find((category) => category.id === id)?.name || '';
   }, [categories]);
 
   return (

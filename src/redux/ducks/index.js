@@ -1,5 +1,7 @@
 import { reducers as categories } from './categories';
 
-export const reducers = {
+const reducers = {
   ...categories,
 };
+
+export default reducers;
