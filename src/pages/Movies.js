@@ -49,7 +49,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/trending/movie/day', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -68,7 +68,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/trending/movie/week', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -83,7 +83,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/discover/movie', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -98,7 +98,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/movie/top_rated', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
           region: 'BR',
         },
       });
@@ -137,21 +137,21 @@ const Movies = () => {
         ListEmptyComponent={renderEmptyComponent}
       />
       <HorizontalMovieCoverList
-        title="Melhores da semana"
-        description="Veja quais são os melhores filmes da semana"
+        title="Best of the week"
+        description="See which are the best films of the week"
         showIndex
         requestDataSource={requestTrendingWeek}
         mediaType="movie"
       />
       <HorizontalMovieCoverList
-        title="Descubra"
-        description="Descubra ótimos filmes para assistir"
+        title="Discover"
+        description="Discover great movies to watch"
         requestDataSource={requestDiscover}
         mediaType="movie"
       />
       <HorizontalMovieCoverList
-        title="Mais votados"
-        description="Veja quais são os filmes mais bem votados no Brasil"
+        title="Top rated"
+        description="See which are the most voted films in Brazil"
         requestDataSource={requestTopRated}
         mediaType="movie"
       />

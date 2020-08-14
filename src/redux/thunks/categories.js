@@ -6,14 +6,14 @@ export const getCategories = () => async (dispatch) => {
     const { data: movieData } = await axios.get(
       '/medias/genre/movie/list', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       },
     );
     const { data: tvData } = await axios.get(
       '/medias/genre/tv/list', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       },
     );

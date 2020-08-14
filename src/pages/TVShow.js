@@ -113,7 +113,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       setTvShowDetails(data);
@@ -126,7 +126,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}/credits`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       setTvShowCredits(data);
@@ -139,7 +139,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}/recommendations`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       return data;
@@ -260,8 +260,8 @@ const TVShow = ({ route }) => {
             />
 
             <HorizontalMovieCoverList
-              title="Relacionados"
-              description="Séries parecidas com esta"
+              title="Related"
+              description="Similar series to this"
               requestDataSource={requestRelated}
               mediaType="tv"
             />

@@ -114,7 +114,7 @@ const HorizontalMovieCoverList = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{description}</Text>
         </View>
-        <Button color={colors.primary} title="+ Ver mais" />
+        <Button color={colors.primary} title="+ SEE MORE" />
       </View>
       <FlatList
         data={dataSource?.results}

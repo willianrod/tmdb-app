@@ -113,7 +113,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       setMovieDetails(data);
@@ -126,7 +126,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}/credits`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       setMovieCredits(data);
@@ -139,7 +139,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}/recommendations`, {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
       return data;
@@ -260,8 +260,8 @@ const Movie = ({ route }) => {
             />
 
             <HorizontalMovieCoverList
-              title="Relacionados"
-              description="Filmes parecidos com este"
+              title="Related"
+              description="Movies like this"
               requestDataSource={requestRelated}
               mediaType="movie"
             />

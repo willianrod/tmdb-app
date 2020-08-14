@@ -49,7 +49,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/day', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -68,7 +68,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/week', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -83,7 +83,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/discover/tv', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
         },
       });
 
@@ -98,7 +98,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/tv/top_rated', {
         params: {
-          language: 'pt-BR',
+          language: 'en-US',
           region: 'BR',
         },
       });
@@ -137,21 +137,21 @@ const TVShows = () => {
         ListEmptyComponent={renderEmptyComponent}
       />
       <HorizontalMovieCoverList
-        title="Melhores da semana"
-        description="Veja quais são as melhores séries da semana"
+        title="Best of the week"
+        description="See which are the best series of the week"
         showIndex
         requestDataSource={requestTrendingWeek}
         mediaType="tv"
       />
       <HorizontalMovieCoverList
-        title="Descubra"
+        title="Discover"
         description="Descubra ótimas séries para assistir"
         requestDataSource={requestDiscover}
         mediaType="tv"
       />
       <HorizontalMovieCoverList
-        title="Mais votados"
-        description="Veja quais são as séries mais bem votados no Brasil"
+        title="Top rated"
+        description="See which are the most voted series in Brazil"
         requestDataSource={requestTopRated}
         mediaType="tv"
       />
