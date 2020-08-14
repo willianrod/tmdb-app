@@ -231,21 +231,21 @@ const Movie = ({ route }) => {
             <Text style={styles.voters}>
               {movieDetails.vote_count}
               {' '}
-              votos
+              votes
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
-          Sinopse
+          Synopsis
         </Text>
         <Text style={styles.bodyText}>
           {movieDetails.overview}
         </Text>
 
         <Text style={styles.bodyTitle}>
-          Creditos
+          Credits
         </Text>
       </View>
       {isFocused

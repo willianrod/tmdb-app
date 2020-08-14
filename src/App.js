@@ -57,12 +57,12 @@ const TVShowsStack = () => (
 const AppTabs = () => (
   <Tab.Navigator>
     <Tab.Screen
-      options={{ tabBarIcon: MovieTabIcon, title: 'Filmes' }}
+      options={{ tabBarIcon: MovieTabIcon, title: 'Movies' }}
       name="MoviesTab"
       component={MovieStack}
     />
     <Tab.Screen
-      options={{ tabBarIcon: TVTabIcon, title: 'Séries' }}
+      options={{ tabBarIcon: TVTabIcon, title: 'TV Shows' }}
       name="TVShowsTab"
       component={TVShowsStack}
     />

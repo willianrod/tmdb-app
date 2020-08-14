@@ -231,21 +231,21 @@ const TVShow = ({ route }) => {
             <Text style={styles.voters}>
               {tvShowDetails.vote_count}
               {' '}
-              votos
+              votes
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
-          Sinopse
+          Synopsis
         </Text>
         <Text style={styles.bodyText}>
           {tvShowDetails.overview}
         </Text>
 
         <Text style={styles.bodyTitle}>
-          Creditos
+          Credits
         </Text>
       </View>
       {isFocused
