@@ -14,6 +14,7 @@ import { useIsFocused } from '@react-navigation/native';
 
 import useDidMount from '../hooks/useDidMount';
 import Cover from '../components/Cover';
+import GoBackButton from '../components/GoBackButton';
 import HorizontalMovieCoverList from '../components/HorizontalMovieCoverList';
 import { getImageUrl } from '../helpers/url-helper';
 import colors from '../values/colors';
@@ -92,6 +93,11 @@ const styles = StyleSheet.create({
   creditCharacterName: {
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  goBackContainer: {
+    position: 'absolute',
+    top: 40,
+    marginLeft: 16,
   },
 });
 
@@ -202,6 +208,9 @@ const TVShow = ({ route }) => {
           colors={LINEAR_GRADIENT_COLORS}
           style={linearGradientStyles}
         />
+        <View style={styles.goBackContainer}>
+          <GoBackButton />
+        </View>
       </View>
       <View style={styles.header}>
         <Cover

@@ -17,6 +17,7 @@ import Cover from '../components/Cover';
 import HorizontalMovieCoverList from '../components/HorizontalMovieCoverList';
 import { getImageUrl } from '../helpers/url-helper';
 import colors from '../values/colors';
+import GoBackButton from '../components/GoBackButton';
 
 const styles = StyleSheet.create({
   header: {
@@ -92,6 +93,11 @@ const styles = StyleSheet.create({
   creditCharacterName: {
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  goBackContainer: {
+    position: 'absolute',
+    top: 40,
+    marginLeft: 16,
   },
 });
 
@@ -202,6 +208,9 @@ const Movie = ({ route }) => {
           colors={LINEAR_GRADIENT_COLORS}
           style={linearGradientStyles}
         />
+        <View style={styles.goBackContainer}>
+          <GoBackButton />
+        </View>
       </View>
       <View style={styles.header}>
         <Cover
