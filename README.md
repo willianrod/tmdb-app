@@ -13,14 +13,26 @@ This is an unofficial client app to list some information from the amazing websi
 when I discovered the amazing API that they have for free so I decided to build something to use their API. The main features for the app is already developed, but some of
 the features that I have in mind will be developed soon.
 
+### Android
+
 Movies tab                |  TV Shows tab
 :-------------------------:|:-------------------------:
-![](https://github.com/WillianRod/tmdb-app/raw/master/screenshots/Screenshot_1.jpg)  |  ![](https://github.com/WillianRod/tmdb-app/raw/master/screenshots/Screenshot_2.jpg)
+![](screenshots/Screenshot_1.jpg)  |  ![](screenshots/Screenshot_2.jpg)
 
 
 Movie details page                |  TV Shows details page
 :-------------------------:|:-------------------------:
-![](https://github.com/WillianRod/tmdb-app/raw/master/screenshots/Screenshot_3.png)  |  ![](https://github.com/WillianRod/tmdb-app/raw/master/screenshots/Screenshot_4.png)
+![](screenshots/Screenshot_3.png)  |  ![](screenshots/Screenshot_4.png)
+
+### iOS
+Movies tab                |  TV Shows tab
+:-------------------------:|:-------------------------:
+![](screenshots/Screenshot_iOS_1.png)  |  ![](screenshots/Screenshot_iOS_3.png)
+
+
+Movie details page                |  TV Shows details page
+:-------------------------:|:-------------------------:
+![](screenshots/Screenshot_iOS_2.png)  |  ![](screenshots/Screenshot_iOS_4.png)
 
 ### Feature check-list
 - [X] Display top movies of the day
