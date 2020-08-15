@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import {
-  Text,
+  Text, StatusBar,
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
@@ -14,6 +14,7 @@ const Start = ({ getCategories, navigation }) => {
     try {
       await getCategories();
       SplashScreen.hide();
+      StatusBar.setBarStyle('light-content');
       navigation.replace('Home');
     } catch (ex) {
       console.warn(ex);

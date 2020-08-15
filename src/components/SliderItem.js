@@ -1,26 +1,31 @@
 import React, { useMemo, useCallback, memo } from 'react';
 import {
-  View, Image, Text, StyleSheet, useWindowDimensions, StatusBar,
+  View, Image, Text, StyleSheet,
+  useWindowDimensions, Platform,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Category from './Category';
 import { getImageUrl } from '../helpers/url-helper';
 import PlaceHolder from './PlaceHolder';
 import Touchable from './Touchable';
 
+const { OS } = Platform;
+
+const IS_ANDROID = OS === 'android';
+
 const styles = StyleSheet.create({
   backdropContainer: {
     position: 'relative',
-    alignSelf: 'flex-end',
-    margin: 16,
+    alignSelf: 'center',
   },
   movieTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    fontFamily: 'Roboto',
+    fontFamily: IS_ANDROID ? 'Roboto' : undefined,
     color: '#ffffff',
   },
   categoryContainer: {
@@ -91,7 +96,7 @@ const SliderItem = memo(({ item, mediaType }) => {
     () => ({
       uri: getImageUrl({ size: 'w300', path: backdropPath }),
     }),
-    [],
+    [backdropPath],
   );
 
   const backdropSource = useMemo(
@@ -101,14 +106,17 @@ const SliderItem = memo(({ item, mediaType }) => {
     [backdropPath],
   );
 
+  const insets = useSafeAreaInsets();
+
   const backdropStyles = useMemo(
     () => ({
       width: width - 30,
       height: width / BACKDROP_ASPECT_RATIO - 32,
-      marginTop: StatusBar.currentHeight,
+      marginTop: IS_ANDROID ? insets.top + 16 : insets.top,
       borderRadius: 4,
+      marginBottom: 8,
     }),
-    [width],
+    [width, insets.top],
   );
 
   const renderCategories = () => {
@@ -125,7 +133,7 @@ const SliderItem = memo(({ item, mediaType }) => {
           source={blurredImageSource}
           blurRadius={3}
         />
-        <View style={styles.backdropContainer}>
+        <View edges={['top']} style={styles.backdropContainer}>
           <Image source={backdropSource} style={backdropStyles} />
         </View>
         <LinearGradient
@@ -149,6 +157,7 @@ const SliderItem = memo(({ item, mediaType }) => {
 
 SliderItem.Placeholder = memo(() => {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
 
   const containerStyle = useMemo(
     () => ({
@@ -161,7 +170,7 @@ SliderItem.Placeholder = memo(() => {
   const placeHolderStyles = useMemo(() => ({
     width: width - 30,
     height: width / BACKDROP_ASPECT_RATIO - 32,
-    marginTop: StatusBar.currentHeight + 16,
+    marginTop: IS_ANDROID ? insets.top + 16 : insets.top,
     backgroundColor: '#1C1D24',
     borderRadius: 4,
     marginHorizontal: 16,
