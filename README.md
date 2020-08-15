@@ -37,7 +37,7 @@ Movie details page                |  TV Shows details page
 - [X] Show related TV Shows of a TV Show
 - [ ] List all itens from each sections on movie/tv show tab
 - [ ] Create a search page to find movies and TV Shows
-
+- [ ] Internationalize the app
 
 ### Download
 You can also try it on your own Android device ~sadly not on iOS yet~
