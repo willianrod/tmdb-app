@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     color: colors.primary,
-    fontSize: 20,
+    fontSize: 19,
   },
   ragingContainer: {
     flexDirection: 'row',
