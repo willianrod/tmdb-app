@@ -40,14 +40,14 @@ const APP_THEME = {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const MovieStack = () => (
+var MovieStack = () => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen name="Movies" component={Movies} />
     <Stack.Screen name="Movie" component={Movie} />
   </Stack.Navigator>
 );
 
-const TVShowsStack = () => (
+var TVShowsStack = () => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen name="TVShows" component={TVShows} />
     <Stack.Screen name="TVShow" component={TVShow} />

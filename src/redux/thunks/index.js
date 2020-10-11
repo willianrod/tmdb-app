@@ -1,6 +1,6 @@
 import * as categoriesThunks from './categories';
 
-const thunks = {
+var thunks = {
   ...categoriesThunks,
 };
 
