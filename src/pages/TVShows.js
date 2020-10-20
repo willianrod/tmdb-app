@@ -49,7 +49,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/day', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -68,7 +68,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/week', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -83,7 +83,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/discover/tv', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -98,7 +98,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/tv/top_rated', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
           region: 'BR',
         },
       });

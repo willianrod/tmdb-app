@@ -111,6 +111,7 @@ const Movie = ({ route }) => {
 
   const [movieDetails, setMovieDetails] = useState(movie);
   const [moviewCredits, setMovieCredits] = useState(null);
+  const { t, i18n } = useTranslation();
 
   const { width } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -119,7 +120,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       setMovieDetails(data);
@@ -132,7 +133,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}/credits`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       setMovieCredits(data);
@@ -145,7 +146,7 @@ const Movie = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/movie/${movie.id}/recommendations`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       return data;
@@ -229,6 +230,7 @@ const Movie = ({ route }) => {
             {' '}
             {movieDetails.runtime || '-'}
             min
+            {t('min')}
           </Text>
           <View style={styles.ragingContainer}>
             <Text style={styles.rating}>
@@ -241,6 +243,7 @@ const Movie = ({ route }) => {
               {movieDetails.vote_count}
               {' '}
               votes
+              {t('votes')}
             </Text>
           </View>
         </View>
@@ -248,6 +251,7 @@ const Movie = ({ route }) => {
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
           Synopsis
+          {t('synopsis')}
         </Text>
         <Text style={styles.bodyText}>
           {movieDetails.overview}
@@ -255,6 +259,7 @@ const Movie = ({ route }) => {
 
         <Text style={styles.bodyTitle}>
           Credits
+          {t('credits')}
         </Text>
       </View>
       {isFocused

@@ -49,7 +49,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/trending/movie/day', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -68,7 +68,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/trending/movie/week', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -83,7 +83,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/discover/movie', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -98,7 +98,7 @@ const Movies = () => {
     try {
       const { data } = await axios.get('/medias/movie/top_rated', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
           region: 'BR',
         },
       });
