@@ -112,7 +112,7 @@ const TVShow = ({ route }) => {
 
   const [tvShowDetails, setTvShowDetails] = useState(tvShow);
   const [tvShowCredits, setTvShowCredits] = useState(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { width } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -275,8 +275,8 @@ const TVShow = ({ route }) => {
             />
 
             <HorizontalMovieCoverList
-              title="Related"
-              description="Similar series to this"
+              title={t("Related")}
+              description={t("Similar series to this")}
               requestDataSource={requestRelated}
               mediaType="tv"
             />

@@ -111,7 +111,7 @@ const Movie = ({ route }) => {
 
   const [movieDetails, setMovieDetails] = useState(movie);
   const [moviewCredits, setMovieCredits] = useState(null);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { width } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -274,8 +274,8 @@ const Movie = ({ route }) => {
             />
 
             <HorizontalMovieCoverList
-              title="Related"
-              description="Movies like this"
+              title={t('Related')}
+              description={t("Movies like this")}
               requestDataSource={requestRelated}
               mediaType="movie"
             />

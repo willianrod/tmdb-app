@@ -43,6 +43,7 @@ const KEY_EXTRACTOR = (item) => String(item.id);
 const Movies = () => {
   const [trendingDay, setTrendingDay] = useState(null);
 
+  const { t } = useTranslation();
   const flatlistRef = useRef(null);
 
   const requestTrendingDay = useCallback(async () => {
@@ -137,21 +138,21 @@ const Movies = () => {
         ListEmptyComponent={renderEmptyComponent}
       />
       <HorizontalMovieCoverList
-        title="Best of the week"
-        description="See which are the best films of the week"
+        title={t("Best of the week")}
+        description={t("See which are the best films of the week")}
         showIndex
         requestDataSource={requestTrendingWeek}
         mediaType="movie"
       />
       <HorizontalMovieCoverList
-        title="Discover"
-        description="Discover great movies to watch"
+        title={t("Discover")}
+        description={t("Discover great movies to watch")}
         requestDataSource={requestDiscover}
         mediaType="movie"
       />
       <HorizontalMovieCoverList
-        title="Top rated"
-        description="See which are the most voted films in Brazil"
+        title={t("Top rated")}
+        description={t("See which are the most voted films in Brazil")}
         requestDataSource={requestTopRated}
         mediaType="movie"
       />
