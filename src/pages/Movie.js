@@ -229,7 +229,6 @@ const Movie = ({ route }) => {
             -
             {' '}
             {movieDetails.runtime || '-'}
-            min
             {t('min')}
           </Text>
           <View style={styles.ragingContainer}>
@@ -242,7 +241,6 @@ const Movie = ({ route }) => {
             <Text style={styles.voters}>
               {movieDetails.vote_count}
               {' '}
-              votes
               {t('votes')}
             </Text>
           </View>
@@ -250,7 +248,6 @@ const Movie = ({ route }) => {
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
-          Synopsis
           {t('synopsis')}
         </Text>
         <Text style={styles.bodyText}>
@@ -258,7 +255,6 @@ const Movie = ({ route }) => {
         </Text>
 
         <Text style={styles.bodyTitle}>
-          Credits
           {t('credits')}
         </Text>
       </View>
