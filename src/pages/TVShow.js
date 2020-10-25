@@ -230,7 +230,6 @@ const TVShow = ({ route }) => {
             -
             {' '}
             {tvShowDetails.runtime || '-'}
-            min
             {t('min')}
           </Text>
           <View style={styles.ragingContainer}>
@@ -243,7 +242,6 @@ const TVShow = ({ route }) => {
             <Text style={styles.voters}>
               {tvShowDetails.vote_count}
               {' '}
-              votes
               {t('votes')}
             </Text>
           </View>
@@ -251,7 +249,6 @@ const TVShow = ({ route }) => {
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
-          Synopsis
           {t('synopsis')}
         </Text>
         <Text style={styles.bodyText}>
@@ -259,7 +256,6 @@ const TVShow = ({ route }) => {
         </Text>
 
         <Text style={styles.bodyTitle}>
-          Credits
           {t('credits')}
         </Text>
       </View>
