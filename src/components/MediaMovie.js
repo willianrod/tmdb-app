@@ -52,7 +52,11 @@ const MediaMovie = ({ movie }) => {
                 {' '}
                 -
                 {' '}
-                {moment(movie.release_date).format('MM/DD/YYYY')}
+                {
+                  movie.release_date
+                    ? moment(movie.release_date).format('MM/DD/YYYY')
+                    : null
+                }
               </Text>
             </View>
           </View>
