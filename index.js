@@ -5,6 +5,6 @@ import axios from 'axios';
 import App from './src/App';
 import { name as appName } from './app.json';
 
-axios.defaults.baseURL = 'http://tmdb.willianrod.com';
+axios.defaults.baseURL = 'https://tmdb-app-teste.herokuapp.com/';
 
 AppRegistry.registerComponent(appName, () => App);

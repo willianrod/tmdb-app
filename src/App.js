@@ -17,6 +17,7 @@ import { store } from './redux';
 import Start from './pages/Start';
 import Movie from './pages/Movie';
 import TVShow from './pages/TVShow';
+import Search from './pages/Search';
 
 const MovieTabIcon = ({ color, size }) => (
   <MaterialCommunityIcon name="movie" size={size} color={color} />
@@ -24,6 +25,10 @@ const MovieTabIcon = ({ color, size }) => (
 
 const TVTabIcon = ({ color, size }) => (
   <MaterialIcon name="tv" size={size} color={color} />
+);
+
+const SearchTabIcon = ({ color, size }) => (
+  <MaterialIcon name="search" size={size} color={color} />
 );
 
 const APP_THEME = {
@@ -39,6 +44,14 @@ const APP_THEME = {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const SearchStack = () => (
+  <Stack.Navigator headerMode="none">
+    <Stack.Screen name="Search" component={Search} />
+    <Stack.Screen name="Movie" component={Movie} />
+    <Stack.Screen name="TVShow" component={TVShow} />
+  </Stack.Navigator>
+);
 
 const MovieStack = () => (
   <Stack.Navigator headerMode="none">
@@ -65,6 +78,11 @@ const AppTabs = () => (
       options={{ tabBarIcon: TVTabIcon, title: 'TV Shows' }}
       name="TVShowsTab"
       component={TVShowsStack}
+    />
+    <Tab.Screen
+      options={{ tabBarIcon: SearchTabIcon, title: 'Search' }}
+      name="Search"
+      component={SearchStack}
     />
   </Tab.Navigator>
 );
