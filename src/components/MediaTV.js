@@ -54,7 +54,11 @@ const MediaTV = ({ tvShow }) => {
                 {' '}
                 -
                 {' '}
-                {moment(tvShow.first_air_date).format('MM/DD/YYYY')}
+                {
+                  tvShow.first_air_date
+                    ? moment(tvShow.first_air_date).format('MM/DD/YYYY')
+                    : null
+                }
               </Text>
             </View>
           </View>
