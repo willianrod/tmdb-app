@@ -10,14 +10,7 @@ import Easing from 'react-native/Libraries/Animated/src/Easing';
 import { getImageUrl } from '../helpers/url-helper';
 import Touchable from './Touchable';
 
-const COVER_WIDTH = 140;
-const COVER_HEIGHT = 140 / (2 / 3);
-
 const styles = StyleSheet.create({
-  movieCover: {
-    width: COVER_WIDTH,
-    height: COVER_HEIGHT,
-  },
   indexIndicator: {
     padding: 2,
     width: 25,
@@ -34,8 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   coverContainer: {
-    width: COVER_WIDTH,
-    height: COVER_HEIGHT,
     backgroundColor: '#1C1D24',
     borderRadius: 4,
     overflow: 'hidden',
@@ -44,18 +35,30 @@ const styles = StyleSheet.create({
 
 const Cover = memo(({
   index, showIndex, size = 'w500',
-  onPress, posterPath,
+  onPress, posterPath, width = 140,
 }) => {
   const imageSource = useMemo(() => ({
     uri: getImageUrl({ path: posterPath, size }),
   }), []);
 
+  const height = useMemo(() => (width / (2 / 3)), [width]);
+
+  const coverStyles = useMemo(() => ({
+    width,
+    height,
+  }), [width, height]);
+
+  const coverContainerStyles = useMemo(() => ({
+    ...styles.coverContainer,
+    ...coverStyles,
+  }), [coverStyles]);
+
   return useMemo(() => (
     <Touchable
       onPress={onPress}
     >
-      <View style={styles.coverContainer}>
-        <Image source={imageSource} style={styles.movieCover} />
+      <View style={coverContainerStyles}>
+        <Image source={imageSource} style={coverStyles} />
 
         {showIndex ? (
           <View style={styles.indexIndicator}>
@@ -70,16 +73,18 @@ const Cover = memo(({
   ), []);
 });
 
-Cover.Placeholder = memo(() => {
+Cover.Placeholder = memo(({ width = 140 }) => {
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
+  const height = useMemo(() => (width / (2 / 3)), [width]);
+
   const placeHolderStyles = useMemo(() => ({
-    width: COVER_WIDTH,
-    height: COVER_HEIGHT,
+    width,
+    height,
     backgroundColor: '#1C1D24',
     borderRadius: 4,
     opacity: fadeAnim,
-  }), []);
+  }), [width, height]);
 
   useEffect(() => {
     Animated.loop(
