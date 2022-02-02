@@ -13,7 +13,7 @@ export const getCategories = () => async (dispatch) => {
     const { data: tvData } = await axios.get(
       '/medias/genre/tv/list', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       },
     );

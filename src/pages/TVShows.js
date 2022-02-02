@@ -43,13 +43,14 @@ const KEY_EXTRACTOR = (item) => String(item.id);
 const TVShows = () => {
   const [trendingDay, setTrendingDay] = useState(null);
 
+  const { t } = useTranslation();
   const flatlistRef = useRef(null);
 
   const requestTrendingDay = useCallback(async () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/day', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -68,7 +69,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/trending/tv/week', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -83,7 +84,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/discover/tv', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
 
@@ -98,7 +99,7 @@ const TVShows = () => {
     try {
       const { data } = await axios.get('/medias/tv/top_rated', {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
           region: 'BR',
         },
       });
@@ -137,21 +138,21 @@ const TVShows = () => {
         ListEmptyComponent={renderEmptyComponent}
       />
       <HorizontalMovieCoverList
-        title="Best of the week"
-        description="See which are the best series of the week"
+        title={t("Best of the week")}
+        description={t("See which are the best series of the week")}
         showIndex
         requestDataSource={requestTrendingWeek}
         mediaType="tv"
       />
       <HorizontalMovieCoverList
-        title="Discover"
-        description="Descubra ótimas séries para assistir"
+        title={t("Discover")}
+        description={t("Descubra ótimas séries para assistir")}
         requestDataSource={requestDiscover}
         mediaType="tv"
       />
       <HorizontalMovieCoverList
-        title="Top rated"
-        description="See which are the most voted series in Brazil"
+        title={t("Top rated")}
+        description={t("See which are the most voted series in Brazil")}
         requestDataSource={requestTopRated}
         mediaType="tv"
       />

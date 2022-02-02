@@ -29,7 +29,11 @@
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "react-i18next": "^11.7.3",
+    "i18next": "^19.8.2",
+    "i18next-http-backend": "^1.0.21",
+    "i18next-browser-languagedetector": "^6.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",

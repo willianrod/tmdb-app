@@ -18,6 +18,7 @@ import GoBackButton from '../components/GoBackButton';
 import HorizontalMovieCoverList from '../components/HorizontalMovieCoverList';
 import { getImageUrl } from '../helpers/url-helper';
 import colors from '../values/colors';
+import { useTranslation } from 'react-i18next';
 
 const styles = StyleSheet.create({
   header: {
@@ -111,6 +112,7 @@ const TVShow = ({ route }) => {
 
   const [tvShowDetails, setTvShowDetails] = useState(tvShow);
   const [tvShowCredits, setTvShowCredits] = useState(null);
+  const { t } = useTranslation();
 
   const { width } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -119,7 +121,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       setTvShowDetails(data);
@@ -132,7 +134,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}/credits`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       setTvShowCredits(data);
@@ -145,7 +147,7 @@ const TVShow = ({ route }) => {
     try {
       const { data } = await axios.get(`/medias/tv/${tvShow.id}/recommendations`, {
         params: {
-          language: 'en-US',
+          language: 'en-US',//
         },
       });
       return data;
@@ -228,7 +230,7 @@ const TVShow = ({ route }) => {
             -
             {' '}
             {tvShowDetails.runtime || '-'}
-            min
+            {t('min')}
           </Text>
           <View style={styles.ragingContainer}>
             <Text style={styles.rating}>
@@ -240,21 +242,21 @@ const TVShow = ({ route }) => {
             <Text style={styles.voters}>
               {tvShowDetails.vote_count}
               {' '}
-              votes
+              {t('votes')}
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.body}>
         <Text style={styles.bodyTitle}>
-          Synopsis
+          {t('synopsis')}
         </Text>
         <Text style={styles.bodyText}>
           {tvShowDetails.overview}
         </Text>
 
         <Text style={styles.bodyTitle}>
-          Credits
+          {t('credits')}
         </Text>
       </View>
       {isFocused
@@ -269,8 +271,8 @@ const TVShow = ({ route }) => {
             />
 
             <HorizontalMovieCoverList
-              title="Related"
-              description="Similar series to this"
+              title={t("Related")}
+              description={t("Similar series to this")}
               requestDataSource={requestRelated}
               mediaType="tv"
             />
